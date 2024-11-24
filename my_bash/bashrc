@@ -1,0 +1,54 @@
+# these lines should be added to .bashrc in home directoru
+# if [ -f ~/.config/my_bash/bashrc ]; then
+# 	. ~/.config/my_bash/bashrc
+# fi
+
+parse_git_branch() {
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+should_have_newline=yes
+prompt_command() {
+	local EXIT="$?"
+	PS1="\[\033[01;33m\]\u\[\033[00m\] @ \[\033[01;32m\]\H\[\033[00m\] : \[\033[01;34m\]\w\[\033[0;35m\]\$(parse_git_branch)\[\033[00m\] \n"
+
+	if [ "$should_have_newline" == yes ]; then
+		PS1="\n$PS1"
+	else
+		should_have_newline=yes
+	fi
+
+	if [ $EXIT = 0 ]; then
+		PS1="$PS1\[\033[01;36m\]\$\[\033[00m\] "
+	else
+		PS1="$PS1\[\033[01;31m\]\$\[\033[00m\] "
+	fi
+}
+
+PROMPT_COMMAND="prompt_command"
+alias clear="should_have_newline=no && clear"
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# neovim aliases
+if command -v nvim &> /dev/null; then
+	alias vi="nvim"
+	alias vim="nvim"
+fi
+
+# greet
+h=`date +%H`
+if [ $h -lt 4 ]; then
+	echo -e "\033[01;34mWelcome to bash\033[00m! \033[01;34mTt's really late\033[00m, \033[01;33m$USER\033[00m."
+elif [ $h -lt 12 ]; then
+	echo -e "\033[01;34mWelcome to bash\033[00m! \033[01;34mGood morning\033[00m, \033[01;33m$USER\033[00m."
+elif [ $h -lt 17 ]; then
+	echo -e "\033[01;34mWelcome to bash\033[00m! \033[01;34mGood afternoon\033[00m, \033[01;33m$USER\033[00m."
+elif [ $h -lt 23 ]; then
+	echo -e "\033[01;34mWelcome to bash\033[00m! \033[01;34mGood evening\033[00m, \033[01;33m$USER\033[00m."
+else
+	echo -e "\033[01;34mWelcome to bash\033[00m! \033[01;34mIt's getting late\033[00m, \033[01;33m$USER\033[00m."
+fi
