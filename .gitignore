@@ -1,0 +1,17 @@
+# first we exclude everything
+*
+
+# neovim config has a seperate repository
+# https://github.com/anir-baaan/neovim-configuration
+
+# include bash config
+!my_bash/*
+
+# include foot terminal config
+!foot/*
+
+# include tmux config
+!tmux/*
+
+# include user directory definitions
+!user-dirs.dirs
