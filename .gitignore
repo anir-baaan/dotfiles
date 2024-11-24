@@ -5,13 +5,16 @@
 # https://github.com/anir-baaan/neovim-configuration
 
 # include bash config
-!my_bash/*
+!mybash/
+!my_bash/**
 
 # include foot terminal config
-!foot/*
+!foot/
+!foot/**
 
 # include tmux config
-!tmux/*
+!tmux/
+!tmux/**
 
 # include user directory definitions
 !user-dirs.dirs
