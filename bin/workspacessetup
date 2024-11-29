@@ -7,15 +7,17 @@ swaymsg workspace 2
 swaymsg move workspace to output HDMI-A-1
 toolwait foot
 sleep 2
-swaymsg workspace 1
-swaymsg workspace 4
-swaymsg move workspace to output eDP-1
-toolwait foot
-sleep 2
 swaymsg workspace 3
 swaymsg move workspace to output eDP-1
 toolwait flatpak run com.spotify.Client
 sleep 5
+swaymsg workspace 4
+swaymsg move workspace to output eDP-1
+toolwait foot
+sleep 2
 swaymsg workspace 5
 swaymsg move workspace to output eDP-1
 toolwait flatpak run com.discordapp.Discord
+sleep 7
+swaymsg workspace 3
+swaymsg workspace 1
