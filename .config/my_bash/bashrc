@@ -1,0 +1,110 @@
+# these lines should be added to .bashrc in home directoru
+# if [ -f ~/.config/my_bash/bashrc ]; then
+# 	. ~/.config/my_bash/bashrc
+# fi
+
+# FIX convoluted
+
+parse_git_branch() {
+	git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+should_have_newline=yes
+prompt_command() {
+	local EXIT="$?" # has to be at the beginning
+	CAN_I_RUN_SUDO=$(sudo -n uptime 2>&1 | grep "load" | wc -l)
+	if [ ${CAN_I_RUN_SUDO} -gt 0 ]; then
+		printf -v PS1RHS "\e[0m[\e[0;1;32m%(%H:%M)T\e[0m] \e[0m[\e[0;1;31mSUPER\e[0m]" -1 # -1 is current time
+	else
+		printf -v PS1RHS "\e[0m[\e[0;1;32m%(%H:%M)T\e[0m]" -1 # -1 is current time
+	fi
+
+
+	# Strip ANSI commands before counting length
+	# From: https://www.commandlinefu.com/commands/view/12043/remove-color-special-escape-ansi-codes-from-text-with-sed
+	PS1RHS_stripped=$(sed "s,\x1B\[[0-9;]*[a-zA-Z],,g" <<<"$PS1RHS")
+
+	# Reference: https://en.wikipedia.org/wiki/ANSI_escape_code
+	# local Save='\e[s' # Save cursor position
+	# local Rest='\e[u' # Restore cursor to save point
+
+	# Save cursor position, jump to right hand edge, then go left N columns where
+	# N is the length of the printable RHS string. Print the RHS string, then
+	# return to the saved position and print the LHS prompt.
+
+	# Note: "\[" and "\]" are used so that bash can calculate the number of
+	# printed characters so that the prompt doesn't do strange things when
+	# editing the entered text.
+
+	PS1="\[\033[01;33m\]\u\[\033[00m\] @ \[\033[01;32m\]\H\[\033[00m\] : \[\033[01;34m\]\w\[\033[0;35m\]\$(parse_git_branch)\[\033[00m\] \n"
+	PS1="\[\e[s\e[${COLUMNS:-$(tput cols)}C\e[${#PS1RHS_stripped}D${PS1RHS}\e[u\]${PS1}"
+
+	if [ "$should_have_newline" == yes ]; then
+		PS1="\n$PS1"
+	else
+		should_have_newline=yes
+	fi
+
+	if [ $EXIT = 0 ]; then
+		PS1="$PS1\[\033[01;36m\]\$\[\033[00m\] "
+	else
+		PS1="$PS1\[\033[01;31m\]\$\[\033[00m\] "
+	fi
+}
+
+PROMPT_COMMAND="prompt_command"
+alias clear="should_have_newline=no && clear"
+
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+
+# neovim aliases
+if command -v nvim &> /dev/null; then
+	alias vi="nvim"
+	alias vim="nvim"
+fi
+
+# greet
+h=`date +%H`
+if [ $h -lt 4 ]; then
+	echo -e "\033[01;34mWelcome to bash\033[00m! \033[01;34mTt's really late\033[00m, \033[01;33m$USER\033[00m."
+elif [ $h -lt 12 ]; then
+	echo -e "\033[01;34mWelcome to bash\033[00m! \033[01;34mGood morning\033[00m, \033[01;33m$USER\033[00m."
+elif [ $h -lt 17 ]; then
+	echo -e "\033[01;34mWelcome to bash\033[00m! \033[01;34mGood afternoon\033[00m, \033[01;33m$USER\033[00m."
+elif [ $h -lt 23 ]; then
+	echo -e "\033[01;34mWelcome to bash\033[00m! \033[01;34mGood evening\033[00m, \033[01;33m$USER\033[00m."
+else
+	echo -e "\033[01;34mWelcome to bash\033[00m! \033[01;34mIt's getting late\033[00m, \033[01;33m$USER\033[00m."
+fi
+
+# zoxide
+eval "$(zoxide init bash)"
+alias cd="z"
+alias cdi="zi"
+
+# bat
+alias cat="bat"
+
+# fzf
+alias ff='fzf --preview "bat --color=always --style=numbers --line-range=:500 {}"'
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# neovim
+alias vi="nvim"
+alias vim="nvim"
+
+# tmux
+if [ "$TERM_PROGRAM" = tmux ]; then
+	alias detach="tmux detach-client"
+else
+	echo -e "\033[01;32mNOTE\033[00m: You are currently \033[01;31mNOT\033[00m in a TMUX session"
+fi
+
+# flutter
+# export PATH="$PATH:/home/anir_baaaan/dev/installs/flutter/bin/"
+
+# chrome (ungoogled chromium)
+# export CHROME_EXECUTABLE="/var/lib/flatpak/app/io.github.ungoogled_software.ungoogled_chromium/current/active/export/bin/io.github.ungoogled_software.ungoogled_chromium";
