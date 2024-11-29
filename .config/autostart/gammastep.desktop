@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.0
+Name=Gammastep
+Comment=Start the gammastep application to configure the display temperature
+Exec=gammastep
+Icon=utilities-terminal
+Terminal=true
+Type=Application
+Categories=Application;
