@@ -1,3 +1,54 @@
 # Wildcards to ignore everything by default
 *
 **
+
+# Add bashrc and bash_profile
+!.bashrc
+!.bash_profile
+
+# Add gitconfig
+!.gitconfig
+
+# Add bin
+!bin/
+
+# Add config directory but exclude everything inside it
+!.config/
+.config/**
+
+# Add user-dir definitions
+!.config/user-dirs.dirs
+
+# Add autostart config
+!.config/autostart/
+!.config/autostart/**
+
+# Add foot config
+!.config/foot/
+!.config/foot/**
+
+# Add gammastep config
+!.config/gammastep/
+!.config/gammastep/**
+
+# Add bash config
+!.config/my_bash/
+!.config/my_bash/**
+
+# NOTE: Not adding neovim config as it has its own config
+
+# Add sway config
+!.config/sway/
+!.config/sway/**
+
+# Add swaylock config
+!.config/swaylock/
+!.config/swaylock/**
+
+# Add tmux config
+!.config/tmux/
+!.config/tmux/**
+
+# Add waybar config
+!.config/waybar/
+!.config/waybar/**
