@@ -11,10 +11,10 @@
 
 # Add bin
 !bin/
+!bin/**
 
 # Add config directory but exclude everything inside it
 !.config/
-.config/**
 
 # Add user-dir definitions
 !.config/user-dirs.dirs
