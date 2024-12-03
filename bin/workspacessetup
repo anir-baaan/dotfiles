@@ -2,24 +2,25 @@
 swaymsg workspace 1
 swaymsg move workspace to output HDMI-A-1
 toolwait flatpak run io.github.zen_browser.zen
-sleep 2
+sleep 2s
 swaymsg workspace 2
 swaymsg move workspace to output HDMI-A-1
 toolwait foot
-sleep 2
+sleep 2s
 swaymsg workspace 3
 swaymsg move workspace to output eDP-1
 toolwait flatpak run com.spotify.Client
-sleep 7
+sleep 7s
 swaymsg workspace 4
 swaymsg move workspace to output eDP-1
-toolwait flatpak run io.github.zen_browser.zen
 toolwait foot
-sleep 5
+toolwait flatpak run io.github.zen_browser.zen
+sleep 2s
+swaymsg resize grow width 200px
 swaymsg move left
 swaymsg workspace 5
 swaymsg move workspace to output eDP-1
 toolwait flatpak run com.discordapp.Discord
-sleep 9
+sleep 10s
 swaymsg workspace 3
 swaymsg workspace 1
