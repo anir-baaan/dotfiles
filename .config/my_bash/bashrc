@@ -103,8 +103,14 @@ else
 	echo -e "\033[01;32mNOTE\033[00m: You are currently \033[01;31mNOT\033[00m in a TMUX session"
 fi
 
+# jetbrains
+PATH="$PATH:/home/anir_baaaan/installs/jetbrains"
+PATH="$PATH:/home/anir_baaaan/installs/jetbrains/scripts"
+
 # flutter
-# export PATH="$PATH:/home/anir_baaaan/dev/installs/flutter/bin/"
+PATH="$PATH:/home/anir_baaaan/installs/flutter/bin/"
 
 # chrome (ungoogled chromium)
-# export CHROME_EXECUTABLE="/var/lib/flatpak/app/io.github.ungoogled_software.ungoogled_chromium/current/active/export/bin/io.github.ungoogled_software.ungoogled_chromium";
+export CHROME_EXECUTABLE="/var/lib/flatpak/app/io.github.ungoogled_software.ungoogled_chromium/current/active/export/bin/io.github.ungoogled_software.ungoogled_chromium";
+
+export PATH
