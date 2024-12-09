@@ -7,20 +7,25 @@ swaymsg workspace 2
 swaymsg move workspace to output HDMI-A-1
 toolwait foot
 sleep 2s
-swaymsg workspace 3
+swaymsg workspace 6
 swaymsg move workspace to output eDP-1
 toolwait flatpak run com.spotify.Client
 sleep 7s
-swaymsg workspace 4
+swaymsg workspace 7
 swaymsg move workspace to output eDP-1
 toolwait foot
 toolwait flatpak run io.github.zen_browser.zen
 sleep 2s
 swaymsg resize grow width 200px
 swaymsg move left
-swaymsg workspace 5
+swaymsg workspace 8
 swaymsg move workspace to output eDP-1
-toolwait flatpak run com.discordapp.Discord
+toolwait flatpak run md.obsidian.Obsidian
+sleep 2s
+swaymsg workspace 9
+swaymsg move workspace to output eDP-1
+toolwait flatpak run com.rtosta.zapzap
+toolwait flatpak run dev.vencord.Vesktop
 sleep 10s
-swaymsg workspace 3
+swaymsg workspace 6
 swaymsg workspace 1
