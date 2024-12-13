@@ -107,6 +107,9 @@ fi
 PATH="$PATH:/home/anir_baaaan/installs/jetbrains"
 PATH="$PATH:/home/anir_baaaan/installs/jetbrains/scripts"
 
+# dart sass
+PATH="$PATH:/home/anir_baaaan/installs/dart_sass"
+
 # flutter
 PATH="$PATH:/home/anir_baaaan/installs/flutter/bin/"
 
