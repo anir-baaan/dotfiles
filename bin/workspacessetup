@@ -7,6 +7,10 @@ swaymsg workspace 2
 swaymsg move workspace to output HDMI-A-1
 toolwait foot
 sleep 2s
+swaymsg workspace 5
+swaymsg move workspace to output HDMI-A-1
+toolwait flatpak run com.rtosta.zapzap
+sleep 2s
 swaymsg workspace 6
 swaymsg move workspace to output eDP-1
 toolwait flatpak run com.spotify.Client
@@ -21,11 +25,10 @@ swaymsg move left
 swaymsg workspace 8
 swaymsg move workspace to output eDP-1
 toolwait flatpak run md.obsidian.Obsidian
-sleep 2s
+sleep 5s
 swaymsg workspace 9
 swaymsg move workspace to output eDP-1
-toolwait flatpak run com.rtosta.zapzap
 toolwait flatpak run dev.vencord.Vesktop
-sleep 10s
+sleep 15s
 swaymsg workspace 6
 swaymsg workspace 1
