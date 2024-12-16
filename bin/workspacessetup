@@ -2,33 +2,38 @@
 swaymsg workspace 1
 swaymsg move workspace to output HDMI-A-1
 toolwait flatpak run io.github.zen_browser.zen
-sleep 2s
+sleep 1s
 swaymsg workspace 2
 swaymsg move workspace to output HDMI-A-1
 toolwait foot
-sleep 2s
-swaymsg workspace 5
-swaymsg move workspace to output HDMI-A-1
-toolwait flatpak run com.rtosta.zapzap
-sleep 2s
+sleep 1s
 swaymsg workspace 6
 swaymsg move workspace to output eDP-1
 toolwait flatpak run com.spotify.Client
-sleep 7s
+sleep 9s
 swaymsg workspace 7
 swaymsg move workspace to output eDP-1
 toolwait foot
 toolwait flatpak run io.github.zen_browser.zen
-sleep 2s
+sleep 1s
 swaymsg resize grow width 200px
 swaymsg move left
 swaymsg workspace 8
 swaymsg move workspace to output eDP-1
+toolwait flatpak run com.rtosta.zapzap
+sleep 1s
+swaymsg workspace 10
+swaymsg move workspace to output eDP-1
 toolwait flatpak run md.obsidian.Obsidian
-sleep 5s
+sleep 7s
+swaymsg splitv
+toolwait "foot -D ~/dev/my_blog"
+swaymsg resize shrink height 300px
+swaymsg focus up
+sleep 1s
 swaymsg workspace 9
 swaymsg move workspace to output eDP-1
 toolwait flatpak run dev.vencord.Vesktop
-sleep 15s
+sleep 17s
 swaymsg workspace 6
 swaymsg workspace 1
